@@ -63,3 +63,29 @@ it("Get Items", async () => {
     });
     expect(items.length).toBe(3);
 });
+
+it("Update Item", async () => {
+    await Item.deleteMany({}, (err) => {
+        if (err) console.log(`error: ${err}`);
+    });
+    const itemName1 = String("Toto");
+
+    const newItem1 = new Item({ name: itemName1 });
+    await newItem1.save();
+
+    const itemName2 = String("UpdateToto");
+    await Item.updateOne(
+        { name: { $eq: itemName1 } },
+        { name: String(itemName2) },
+        (err) => {
+            if (err) console.log(`error: ${err}`);
+        }
+    );
+
+    const items = await Item.find({ name: { $eq: itemName2 } }, (err, docs) => {
+        if (err) console.log(`error: ${err}`);
+        else return docs;
+    });
+    expect(items.length).toBe(1);
+    expect(items[0].name).toBe(itemName2);
+});
