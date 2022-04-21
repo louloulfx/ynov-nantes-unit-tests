@@ -10,6 +10,28 @@ beforeAll(async () => {
         .catch((err) => console.log(err));
 });
 
+it("Delete Items", async () => {
+    const itemName1 = String("Toto");
+
+    const newItem1 = new Item({ name: itemName1 });
+    await newItem1.save();
+
+    const itemName2 = String("Tata");
+
+    const newItem2 = new Item({ name: itemName2 });
+    await newItem2.save();
+
+    await Item.deleteMany({}, (err) => {
+        if (err) console.log(`error: ${err}`);
+    });
+
+    const items = await Item.find({}, (err, docs) => {
+        if (err) console.log(`error: ${err}`);
+        else return docs;
+    });
+    expect(items.length).toBe(0);
+});
+
 it("Create Item", async () => {
     const itemName = String("Toto");
 
