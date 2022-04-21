@@ -46,3 +46,20 @@ it("Create Item", async () => {
     expect(items[0].name).toBe(itemName);
     expect(items[0].date).not.toBe(undefined);
 });
+
+it("Get Items", async () => {
+    const itemName1 = String("Toto");
+
+    const newItem1 = new Item({ name: itemName1 });
+    await newItem1.save();
+
+    const itemName2 = String("Tata");
+
+    const newItem2 = new Item({ name: itemName2 });
+    await newItem2.save();
+    const items = await Item.find({}, (err, docs) => {
+        if (err) console.log(`error: ${err}`);
+        else return docs;
+    });
+    expect(items.length).toBe(3);
+});
