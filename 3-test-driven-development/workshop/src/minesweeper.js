@@ -100,15 +100,6 @@ class Minesweeper {
     }
 }
 
-const input = "3 3\n" +
-    "*...\n" +
-    "....\n" +
-    ".*.." +
-"3 3\n" +
-"*...\n" +
-"....\n" +
-".*..";
-
 class MinesweeperReader {
     constructor(input) {
         this.input = input
@@ -135,7 +126,5 @@ class MinesweeperReader {
 }
 
 module.exports = {
-    Minesweeper,
-    Cell,
     MinesweeperReader
 }
