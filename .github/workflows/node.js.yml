@@ -1,0 +1,35 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch: ~
+
+jobs:
+  j2-run-unit-test:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - name: Checkout current repo in CI
+      uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install dependencies
+      working-directory: ./2-unit-tests/jest/
+      run: npm i
+    - name: Enforce that the code is Linted
+      working-directory: ./2-unit-tests/jest/
+      run: npm run lint
+    - name: Run tests
+      working-directory: ./2-unit-tests/jest/
+      run: npm run test
