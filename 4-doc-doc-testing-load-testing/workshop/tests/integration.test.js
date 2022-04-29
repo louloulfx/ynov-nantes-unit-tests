@@ -3,7 +3,7 @@ const ToDo = require('../toDoModel').ToDo;
 
 beforeAll(async () => {
     await mongoose
-        .connect("mongodb://localhost:27017/toDoApp", {
+        .connect("mongodb://mongo:27017/toDoApp", {
             useNewUrlParser: true,
         })
         .then(() => {
