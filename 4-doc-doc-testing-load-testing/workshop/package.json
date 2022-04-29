@@ -16,11 +16,12 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4",
-    "nodemon": "^1.18.9",
-    "mongoose": "^5.4.1",
     "codeceptjs": "^3.3.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.1",
+    "nodemon": "^1.18.9",
     "playwright": "^1.19.1",
+    "swagger-ui-express": "^4.3.0",
     "webdriverio": "^6.12.1"
   }
 }
